@@ -1,3 +1,4 @@
+using System;
 using Tracer.Tracer;
 
 namespace MainClass
@@ -10,13 +11,24 @@ namespace MainClass
         internal TestedClass(ITracer tracer)
         {
             _tracer = tracer;
+            _bar = new Bar(_tracer);
         }
 
         public void MyMethod()
         {
             _tracer.StartTrace();
-            _bar.InnerMathod();
-            _tracer.StartTrace();
+            _bar.InnerMethod();
+            try
+            {
+               
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
+            _tracer.StopTrace();
         }
     }
 
@@ -26,12 +38,18 @@ namespace MainClass
 
         internal Bar(ITracer tracer)
         {
+           
             _tracer = tracer;
         }
 
-        public void InnerMathod()
+        public void InnerMethod()
         {
             _tracer.StartTrace();
+            int x = 1;
+            for (int i = 0; i < 1000; i++)
+            {
+                x = i * i;
+            }
             _tracer.StopTrace();
         }
     }

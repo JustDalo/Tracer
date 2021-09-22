@@ -1,4 +1,5 @@
 ﻿using System;
+using Tracer.Tracer;
 
 namespace MainClass
 {
@@ -6,7 +7,11 @@ namespace MainClass
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var tracer = new Tracer.Tracer.Tracer();
+            var testedClass = new TestedClass(tracer);
+            var bar = new Bar(tracer);
+            testedClass.MyMethod();
+            bar.InnerMethod();
         }
     }
 }

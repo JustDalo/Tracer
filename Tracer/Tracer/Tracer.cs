@@ -1,3 +1,5 @@
+using System;
+
 namespace Tracer.Tracer
 {
     public interface ITracer
@@ -8,14 +10,20 @@ namespace Tracer.Tracer
     }
     public class Tracer : ITracer
     {
-        void ITracer.StartTrace()
+        private TraceMethod resolveMethod;
+        public Tracer()
         {
             
+        }
+        void ITracer.StartTrace()
+        {
+            resolveMethod = new TraceMethod();
+            resolveMethod.StartMethodTrace();
         }
 
         void ITracer.StopTrace()
         {
-            
+            resolveMethod.StopMethodTrace();
         }
 
         TraceResult ITracer.GetTraceResult()
