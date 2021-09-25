@@ -5,10 +5,17 @@ namespace Tracer.Tracer
 {
     public class TraceResult
     {
-        public int Id { get; set; }
-        public TimeSpan ThreadTime { get; set; }
-        public List<MethodInfo> ChildMethod { get; set; } 
+        public List<ThreadInfo> ThreadsInfo { get; set; }
+        public List<MethodInfo> ChildMethod { get; set; }
+
+        public TraceResult()
+        {
+            ThreadsInfo = new List<ThreadInfo>();
+            
+        }
     }
+    
+    
 
     public class MethodNode
     {

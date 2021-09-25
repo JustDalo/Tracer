@@ -3,46 +3,58 @@ using Tracer.Tracer;
 
 namespace MainClass
 {
-    public class Foo
+    public class Class1
     {
-        private Bar _bar;
+        private Class2 _class2;
         private ITracer _tracer;
 
-        internal Foo(ITracer tracer)
+        internal Class1(ITracer tracer)
         {
             _tracer = tracer;
-            _bar = new Bar(_tracer);
+            _class2 = new Class2(_tracer);
         }
 
-        public void MyMethod()
+        public void Class1Method()
         {
             _tracer.StartTrace();
-            _bar.InnerMethod();
+            _class2.Class2Method();
             _tracer.StopTrace();
            // _tracer.GetTraceResult();
         }
     }
 
-    public class Bar
+    public class Class2
     {
+        private Class3 _class3;
         private ITracer _tracer;
 
-        internal Bar(ITracer tracer)
+        internal Class2(ITracer tracer)
         {
-           
+            _tracer = tracer;
+            _class3 = new Class3(_tracer);
+        }
+
+        public void Class2Method()
+        {
+            _tracer.StartTrace();
+            _class3.Class3Method();
+            _tracer.StopTrace();
+        }
+    }
+
+    public class Class3
+    {
+        private ITracer _tracer;
+        internal Class3(ITracer tracer)
+        {
             _tracer = tracer;
         }
 
-        public void InnerMethod()
+        public void Class3Method()
         {
             _tracer.StartTrace();
-            int x = 1;
-            for (int i = 0; i < 1000; i++)
-            {
-                x = i * i;
-            }
             _tracer.StopTrace();
-           // Console.WriteLine(_tracer.GetTraceResult());
+            _tracer.GetTraceResult();
         }
     }
 }

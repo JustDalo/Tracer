@@ -11,6 +11,7 @@ namespace Tracer.Tracer
         private DateTime StartTime { get; set; }
         private TimeSpan FinishedTime { get; set; }
         private MethodInfo MethodInfo { get; set; }
+       
         public TraceMethod()
         {
             MethodInfo = new MethodInfo();
@@ -29,10 +30,12 @@ namespace Tracer.Tracer
         {
             FinishedTime = DateTime.Now - StartTime;
             MethodInfo.ElapsedTime = FinishedTime.Milliseconds;
-            Console.WriteLine(FinishedTime);
-            Console.WriteLine(MethodInfo.ElapsedTime);
-           // Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
-           // Console.WriteLine(MethodInfo.ElapsedTime);
+            Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " - " + FinishedTime);
+            Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " - " + MethodInfo.ElapsedTime);
+            Console.WriteLine("Thread:" + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine();
+            
+            // Console.WriteLine(MethodInfo.ElapsedTime);
            // Console.WriteLine(MethodInfo.ClassName);
            // Console.WriteLine(MethodInfo.MethodName);
         }
