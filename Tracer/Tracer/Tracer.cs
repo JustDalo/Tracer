@@ -6,28 +6,53 @@ namespace Tracer.Tracer
 {
     public class Tracer : ITracer
     {
-        private ResolveThread _resolveThread;
+        private List<ResolveThread> ThreadList { get; set; }
+        
         private TraceResult _traceResult;
         private static object _locker;
         public Tracer()
         {
             _locker = new object();
             _traceResult = new TraceResult();
-            
+            ThreadList = new List<ResolveThread>();
         }
         void ITracer.StartTrace()
         {
-            _resolveThread = new ResolveThread();
-            _resolveThread.StartThreadTrace();
+            ResolveThread thread = GetCurrentThread();
+            if (thread == null)
+            {
+                thread = new ResolveThread();
+                lock (_locker)
+                {
+                    ThreadList.Add(thread);
+                }
+            }
+            thread.StartThreadTrace();
         }
 
         void ITracer.StopTrace()
         {
-            _resolveThread.StopThreadTrace();
+            ResolveThread thread = GetCurrentThread();
+            thread.StopThreadTrace();
         }
 
         TraceResult ITracer.GetTraceResult()
         {
+            return null;
+        }
+
+        private ResolveThread GetCurrentThread()
+        {
+            lock (_locker)
+            {
+                foreach (var thread in ThreadList)
+                {
+                    if (thread.ThreadInfo.ThreadId == Thread.CurrentThread.ManagedThreadId)
+                    {
+                        return thread;
+                    }
+                }
+            }
             return null;
         }
     }

@@ -9,7 +9,7 @@ namespace Tracer.Serialization
         {
         }
 
-        public void SerializeTraceResult()
+        void ISerialization.SerializeTraceResult()
         {
             
         }

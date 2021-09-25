@@ -10,7 +10,7 @@ namespace Tracer.Tracer
     {
         private DateTime StartTime { get; set; }
         private TimeSpan FinishedTime { get; set; }
-        private MethodInfo MethodInfo { get; set; }
+        public MethodInfo MethodInfo { get; set; }
        
         public TraceMethod()
         {
@@ -19,9 +19,9 @@ namespace Tracer.Tracer
 
         public void StartMethodTrace()
         {
-            StackFrame frame = new StackFrame(2);
+            StackFrame frame = new StackFrame(3);
             var method = frame.GetMethod();
-            this.StartTime = DateTime.Now;
+            StartTime = DateTime.Now;
             MethodInfo.ClassName = method.DeclaringType.ToString();
             MethodInfo.MethodName = method.Name;
         }
@@ -29,20 +29,14 @@ namespace Tracer.Tracer
         public void StopMethodTrace()
         {
             FinishedTime = DateTime.Now - StartTime;
-            MethodInfo.ElapsedTime = FinishedTime.Milliseconds;
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " - " + FinishedTime);
+            MethodInfo.ElapsedTime = FinishedTime;
+            /*Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " - " + FinishedTime);
             Console.WriteLine(Thread.CurrentThread.ManagedThreadId + " - " + MethodInfo.ElapsedTime);
             Console.WriteLine("Thread:" + Thread.CurrentThread.ManagedThreadId);
-            Console.WriteLine();
-            
+            Console.WriteLine();*/
             // Console.WriteLine(MethodInfo.ElapsedTime);
-           // Console.WriteLine(MethodInfo.ClassName);
-           // Console.WriteLine(MethodInfo.MethodName);
-        }
-
-        public MethodInfo GetMethodInfo()
-        {
-            return MethodInfo;
+            // Console.WriteLine(MethodInfo.ClassName);
+            // Console.WriteLine(MethodInfo.MethodName);
         }
     }
     

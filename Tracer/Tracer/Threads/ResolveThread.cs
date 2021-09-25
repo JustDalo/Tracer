@@ -1,29 +1,29 @@
 using System;
+using System.Diagnostics;
 
 namespace Tracer.Tracer
 {
     public class ResolveThread
     {
-        private ThreadInfo ThreadInfo { get; set; }
-        private int ThreadElapsedTime { get; set; }
-        private DateTime StartTime { get; set; }
-        
+        public ThreadInfo ThreadInfo { get; set; }
+        private TraceMethod MethodInfo { get; set; }
+
         public ResolveThread()
         {
             ThreadInfo = new ThreadInfo();
+            
         }
 
         public void StartThreadTrace()
         {
-            StartTime = DateTime.Now;
-            
+            MethodInfo = new TraceMethod();
+            ThreadInfo.MethodInfo.Add(MethodInfo.MethodInfo);
+            MethodInfo.StartMethodTrace();
         }
 
         public void StopThreadTrace()
         {
-            var finishedTime = DateTime.Now - StartTime;
-            ThreadInfo.ThreadElapsedTime = finishedTime.Milliseconds;
-            
+            MethodInfo.StopMethodTrace();
         }
         
     }
