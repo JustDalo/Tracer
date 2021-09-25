@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Diagnostics;
+using System.Threading;
 using System.Timers;
 
 namespace Tracer.Tracer
@@ -24,30 +25,21 @@ namespace Tracer.Tracer
             MethodInfo.MethodName = method.Name;
         }
 
-        public MethodInfo StopMethodTrace()
+        public void StopMethodTrace()
         {
             FinishedTime = DateTime.Now - StartTime;
-            MethodInfo.ElapsedTime = FinishedTime;
-            
+            MethodInfo.ElapsedTime = FinishedTime.Milliseconds;
+            Console.WriteLine(FinishedTime);
             Console.WriteLine(MethodInfo.ElapsedTime);
-            Console.WriteLine(MethodInfo.ClassName);
-            Console.WriteLine(MethodInfo.MethodName);
+           // Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+           // Console.WriteLine(MethodInfo.ElapsedTime);
+           // Console.WriteLine(MethodInfo.ClassName);
+           // Console.WriteLine(MethodInfo.MethodName);
+        }
+
+        public MethodInfo GetMethodInfo()
+        {
             return MethodInfo;
-        }
-
-        private string GetCurrentClassName()
-        {
-            StackTrace stackTrace = new StackTrace();
-            StackFrame stackFrame = stackTrace.GetFrame(3);
-
-            return stackFrame.GetMethod().DeclaringType.ToString();
-        }
-        private string GetCurrentMethodName()
-        {
-            StackTrace stackTrace = new StackTrace();
-            StackFrame stackFrame = stackTrace.GetFrame(2);
-
-            return stackFrame.GetMethod().Name;
         }
     }
     

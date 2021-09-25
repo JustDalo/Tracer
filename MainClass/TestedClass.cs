@@ -3,12 +3,12 @@ using Tracer.Tracer;
 
 namespace MainClass
 {
-    public class TestedClass
+    public class Foo
     {
         private Bar _bar;
         private ITracer _tracer;
 
-        internal TestedClass(ITracer tracer)
+        internal Foo(ITracer tracer)
         {
             _tracer = tracer;
             _bar = new Bar(_tracer);
@@ -18,17 +18,8 @@ namespace MainClass
         {
             _tracer.StartTrace();
             _bar.InnerMethod();
-            try
-            {
-               
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-           
             _tracer.StopTrace();
+           // _tracer.GetTraceResult();
         }
     }
 
@@ -51,6 +42,7 @@ namespace MainClass
                 x = i * i;
             }
             _tracer.StopTrace();
+           // Console.WriteLine(_tracer.GetTraceResult());
         }
     }
 }

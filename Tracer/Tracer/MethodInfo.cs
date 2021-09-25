@@ -6,6 +6,6 @@ namespace Tracer.Tracer
     {
         public string ClassName { get; set; }
         public string MethodName { get; set; }
-        public TimeSpan ElapsedTime { get; set; }
+        public int ElapsedTime { get; set; }
     }
 }

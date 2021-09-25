@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Tracer.Tracer;
 
 namespace MainClass
@@ -8,10 +9,16 @@ namespace MainClass
         static void Main(string[] args)
         {
             var tracer = new Tracer.Tracer.Tracer();
-            var testedClass = new TestedClass(tracer);
+            var testedClass = new Foo(tracer);
             var bar = new Bar(tracer);
+           
             testedClass.MyMethod();
-            bar.InnerMethod();
+            Thread t = new Thread(new ThreadStart(bar.InnerMethod));
+           
+            t.Start();
+            
+            
+
         }
     }
 }
