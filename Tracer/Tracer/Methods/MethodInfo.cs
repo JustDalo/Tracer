@@ -1,6 +1,6 @@
 using System;
 
-namespace Tracer.Tracer
+namespace Tracer.Tracer.Methods
 {
     public class MethodInfo
     {

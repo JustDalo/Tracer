@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Tracer.Serialization;
 using Tracer.Tracer;
 
 namespace MainClass
@@ -17,6 +18,10 @@ namespace MainClass
             Thread class3Thread = new Thread(new ThreadStart(class3.Class3Method));
             class3Thread.Start();
             class1.Class1Method();
+
+            TraceResult traceResult = tracer.GetTraceResult();
+            var json = new JsonSerialization();
+            json.SerializeTraceResult(traceResult);
         }
     }
 }

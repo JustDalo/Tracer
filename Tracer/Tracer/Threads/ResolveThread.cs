@@ -1,7 +1,6 @@
-using System;
-using System.Diagnostics;
+using Tracer.Tracer.Methods;
 
-namespace Tracer.Tracer
+namespace Tracer.Tracer.Threads
 {
     public class ResolveThread
     {
@@ -11,7 +10,6 @@ namespace Tracer.Tracer
         public ResolveThread()
         {
             ThreadInfo = new ThreadInfo();
-            
         }
 
         public void StartThreadTrace()

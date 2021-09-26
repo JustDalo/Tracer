@@ -1,5 +1,9 @@
-using System.Net.Http.Json;
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Tracer.Tracer;
+using Tracer.Tracer.Threads;
+
 
 namespace Tracer.Serialization
 {
@@ -7,11 +11,19 @@ namespace Tracer.Serialization
     {
         public JsonSerialization()
         {
+            
         }
 
-        void ISerialization.SerializeTraceResult()
+        public void SerializeTraceResult(TraceResult threadList)
         {
-            
+            Console.WriteLine(threadList.ThreadsList);
+            TraceJson jsonResults = new TraceJson
+            {
+                ThreadId = 1,
+            };
+
+            string json = JsonConvert.SerializeObject(jsonResults, Formatting.Indented);
+            Console.Write(json);
         }
         
         
@@ -19,6 +31,8 @@ namespace Tracer.Serialization
 
     internal class TraceJson
     {
+        public int ThreadId;
+        public TimeSpan ThreadElapsetTime;
         
     }
 }

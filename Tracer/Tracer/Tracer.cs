@@ -1,19 +1,17 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
+using Tracer.Tracer.Threads;
 
 namespace Tracer.Tracer
 {
     public class Tracer : ITracer
     {
         private List<ResolveThread> ThreadList { get; set; }
-        
-        private TraceResult _traceResult;
         private static object _locker;
         public Tracer()
         {
             _locker = new object();
-            _traceResult = new TraceResult();
             ThreadList = new List<ResolveThread>();
         }
         void ITracer.StartTrace()
@@ -36,9 +34,10 @@ namespace Tracer.Tracer
             thread.StopThreadTrace();
         }
 
-        TraceResult ITracer.GetTraceResult()
+        public TraceResult GetTraceResult()
         {
-            return null;
+            TraceResult traceResult = new TraceResult(ThreadList);
+            return traceResult;
         }
 
         private ResolveThread GetCurrentThread()

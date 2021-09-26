@@ -19,7 +19,6 @@ namespace MainClass
             _tracer.StartTrace();
             _class2.Class2Method();
             _tracer.StopTrace();
-           // _tracer.GetTraceResult();
         }
     }
 

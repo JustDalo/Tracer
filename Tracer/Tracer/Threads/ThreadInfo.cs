@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Threading;
+using Tracer.Tracer.Methods;
 
-namespace Tracer.Tracer
+namespace Tracer.Tracer.Threads
 {
     public class ThreadInfo
     {

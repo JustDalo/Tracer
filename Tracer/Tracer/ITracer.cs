@@ -4,6 +4,6 @@ namespace Tracer.Tracer
     {
         void StartTrace();
         void StopTrace();
-        TraceResult GetTraceResult();
+        public TraceResult GetTraceResult();
     }
 }

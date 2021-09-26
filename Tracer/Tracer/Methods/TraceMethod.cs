@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Timers;
 
-namespace Tracer.Tracer
+namespace Tracer.Tracer.Methods
 {
     public class TraceMethod
     {

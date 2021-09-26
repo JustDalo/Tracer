@@ -1,24 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Tracer.Tracer.Threads;
 
 namespace Tracer.Tracer
 {
     public class TraceResult
     {
-        public List<ThreadInfo> ThreadsInfo { get; set; }
-        public List<MethodInfo> ChildMethod { get; set; }
-
-        public TraceResult()
+        public IReadOnlyList<ResolveThread> ThreadsList;
+      
+        public TraceResult(List<ResolveThread> threadsList)
         {
-            ThreadsInfo = new List<ThreadInfo>();
-            
+            ThreadsList = new ReadOnlyCollection<ResolveThread>(threadsList);
         }
-    }
-    
-    
-
-    public class MethodNode
-    {
-        public List<MethodInfo> ChildMethod { get; set; }
+        
     }
 }
