@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Tracer.Tracer;
 
 namespace MainClass
@@ -19,6 +20,8 @@ namespace MainClass
         public void Class1Method()
         {
             _tracer.StartTrace();
+            Thread thread3 = new Thread(new ThreadStart(_class3.Class3Method));
+            thread3.Start();
             _class2.Class2Method();
             _class3.Class3Method();
             _tracer.StopTrace();

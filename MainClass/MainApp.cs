@@ -18,9 +18,9 @@ namespace MainClass
             Thread class3Thread = new Thread(new ThreadStart(class3.Class3Method));
             class3Thread.Start();
             class1.Class1Method();
-
+            class3.Class3Method();
             TraceResult traceResult = tracer.GetTraceResult();
-            var json = new JsonSerialization();
+            var json = new XmlSerialization();
             json.SerializeTraceResult(traceResult);
         }
     }

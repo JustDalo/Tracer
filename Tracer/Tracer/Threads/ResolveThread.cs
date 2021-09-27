@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Tracer.Tracer.Methods;
 
 namespace Tracer.Tracer.Threads
 {
     public class ResolveThread
     {
+        [XmlElement("threadInformation")]
+        [JsonProperty("thread information")]
         public ThreadInfo ThreadInfo { get; set; }
         private DateTime ThreadStartTime;
         private TraceMethod _methodInfo;
-
+        
+        [XmlIgnore]
         private Stack<TraceMethod> _methodStack;
         public ResolveThread()
         {
@@ -42,6 +47,7 @@ namespace Tracer.Tracer.Threads
             _methodInfo.StopMethodTrace();
             ThreadInfo.ThreadElapsedTime = DateTime.Now - ThreadStartTime;
         }
+        
         
     }
 }
