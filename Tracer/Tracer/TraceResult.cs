@@ -13,11 +13,5 @@ namespace Tracer.Tracer
         {
             ThreadsList = new ReadOnlyCollection<ResolveThread>(threadsList);
         }
-
-        public TraceResult()
-        {
-            
-        }
-        
     }
 }
