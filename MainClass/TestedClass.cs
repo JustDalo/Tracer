@@ -10,7 +10,7 @@ namespace MainClass
         private Class3 _class3;
         private ITracer _tracer;
 
-        internal Class1(ITracer tracer)
+        public Class1(ITracer tracer)
         {
             _tracer = tracer;
             _class2 = new Class2(_tracer);
@@ -33,7 +33,7 @@ namespace MainClass
         private Class3 _class3;
         private ITracer _tracer;
 
-        internal Class2(ITracer tracer)
+        public Class2(ITracer tracer)
         {
             _tracer = tracer;
             _class3 = new Class3(_tracer);
@@ -51,7 +51,7 @@ namespace MainClass
     public class Class3
     {
         private ITracer _tracer;
-        internal Class3(ITracer tracer)
+        public Class3(ITracer tracer)
         {
             _tracer = tracer;
         }

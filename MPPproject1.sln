@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainClass", "MainClass\Main
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csproj", "{CE366FA7-FCD3-4D3B-9178-014AFA60D63A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerTests", "TracerTests\TracerTests.csproj", "{66588468-50E8-4075-A848-1AD676E0E82A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{CE366FA7-FCD3-4D3B-9178-014AFA60D63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE366FA7-FCD3-4D3B-9178-014AFA60D63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE366FA7-FCD3-4D3B-9178-014AFA60D63A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66588468-50E8-4075-A848-1AD676E0E82A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66588468-50E8-4075-A848-1AD676E0E82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66588468-50E8-4075-A848-1AD676E0E82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66588468-50E8-4075-A848-1AD676E0E82A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
