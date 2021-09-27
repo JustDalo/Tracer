@@ -1,10 +1,12 @@
 using System;
-using System.Collections.Generic;
+using System.Text.Json;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Tracer.Tracer;
 using Tracer.Tracer.Threads;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 
 namespace Tracer.Serialization
@@ -15,74 +17,16 @@ namespace Tracer.Serialization
         {
             
         }
-
+        
         public void SerializeTraceResult(TraceResult threadList)
         {
-            int threadCount = 0;
-            JsonMethod prevJsonMethod = null;
+            File.WriteAllText(@"d:\TraceResult.json", JsonConvert.SerializeObject(threadList));
             
-            JsonMain jsonMain = new JsonMain
+            using (StreamWriter file = File.CreateText(@"d:\TraceResult.json"))
             {
-                Threads = new JsonThread[threadList.ThreadsList.Count],
-            };
-            foreach (var thread in threadList.ThreadsList)
-            {
-                JsonThread jsonThread = new JsonThread
-                {
-                    ThreadId = thread.ThreadInfo.ThreadId,
-                    ThreadElapsedTime = thread.ThreadInfo.ThreadElapsedTime,
-                    ThreadMethods = new JsonMethod(),
-                };
-                jsonMain.Threads[threadCount] = jsonThread;
-                var methodCount = 0;
-                foreach (var method in thread.ThreadInfo.MethodInfo)
-                {
-                    
-                    JsonMethod jsonMethod = new JsonMethod
-                    {
-                        MethodName = method.MethodName,
-                        ClassName = method.ClassName,
-                        ElapsedTime = method.ElapsedTime,
-                        ChildMethod = null,
-                    };
-                    
-                    if (methodCount.Equals(0))
-                    {
-                        jsonThread.ThreadMethods = jsonMethod;
-                    }
-                    else
-                    {
-                        prevJsonMethod.ChildMethod = jsonMethod;
-                    }
-
-                    prevJsonMethod = jsonMethod;
-                    methodCount++;
-                    
-                }
-
-                threadCount++;
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, threadList);
             }
-            string json = JsonConvert.SerializeObject(jsonMain, Formatting.Indented);
-            Console.WriteLine(json);
         }
-    }
-
-    internal class JsonMain
-    {
-        public JsonThread[] Threads;
-    }
-    internal class JsonThread
-    {
-        public int ThreadId;
-        public TimeSpan ThreadElapsedTime;
-        public JsonMethod ThreadMethods;
-    }
-
-    internal class JsonMethod
-    {
-        public string MethodName;
-        public string ClassName;
-        public TimeSpan ElapsedTime;
-        public JsonMethod ChildMethod;
     }
 }

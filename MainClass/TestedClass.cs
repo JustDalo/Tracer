@@ -6,18 +6,21 @@ namespace MainClass
     public class Class1
     {
         private Class2 _class2;
+        private Class3 _class3;
         private ITracer _tracer;
 
         internal Class1(ITracer tracer)
         {
             _tracer = tracer;
             _class2 = new Class2(_tracer);
+            _class3 = new Class3(_tracer);
         }
 
         public void Class1Method()
         {
             _tracer.StartTrace();
             _class2.Class2Method();
+            _class3.Class3Method();
             _tracer.StopTrace();
         }
     }
@@ -31,6 +34,7 @@ namespace MainClass
         {
             _tracer = tracer;
             _class3 = new Class3(_tracer);
+            
         }
 
         public void Class2Method()
