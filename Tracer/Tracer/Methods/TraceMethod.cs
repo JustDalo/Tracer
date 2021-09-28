@@ -8,7 +8,7 @@ namespace Tracer.Tracer.Methods
 {
     public class TraceMethod
     {
-        private DateTime MethodStartTime { get; set; }
+       
         public MethodInfo MethodInfo { get; set; }
        
         public TraceMethod()
@@ -17,17 +17,18 @@ namespace Tracer.Tracer.Methods
             MethodInfo.MethodStartTime = DateTime.Now;
         }
 
-        public void StartMethodTrace()
+        public void StartMethodTrace(MethodInfo methodInfo)
         {
             StackFrame frame = new StackFrame(3);
             var method = frame.GetMethod();
-            MethodInfo.ClassName = method.DeclaringType.ToString();
-            MethodInfo.MethodName = method.Name;
+            methodInfo.ClassName = method.DeclaringType.ToString();
+            methodInfo.MethodName = method.Name;
         }
 
-        public void StopMethodTrace()
+        public void StopMethodTrace(MethodInfo methodInfo)
         {
-            MethodInfo.ElapsedTime = DateTime.Now - MethodInfo.MethodStartTime;
+            var finishedTime = DateTime.Now - MethodInfo.MethodStartTime;
+            methodInfo.ElapsedTime = DateTime.Now - MethodInfo.MethodStartTime;
         }
     }
     

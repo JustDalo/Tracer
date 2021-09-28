@@ -37,14 +37,16 @@ namespace Tracer.Tracer.Threads
                 oldMethod.MethodInfo.ChildMethods.Add(_methodInfo.MethodInfo);
             }
             _methodStack.Push(_methodInfo);
-            _methodInfo.StartMethodTrace();
+            
+            _methodInfo.StartMethodTrace(_methodStack.Peek().MethodInfo);
         }
 
         public void StopThreadTrace()
         {
             var method = _methodStack.Pop();
             
-            _methodInfo.StopMethodTrace();
+            _methodInfo.StopMethodTrace(method.MethodInfo);
+            
             ThreadInfo.ThreadElapsedTime = DateTime.Now - ThreadStartTime;
         }
         

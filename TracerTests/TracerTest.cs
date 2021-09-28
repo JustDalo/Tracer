@@ -21,8 +21,8 @@ namespace TracerTests
 
         [Test]
         public void Test1()
-        {
-            Assert.Pass();
+        {   
+            _class1.Class1Method();
         }
     }
 }
