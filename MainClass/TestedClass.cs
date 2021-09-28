@@ -20,8 +20,6 @@ namespace MainClass
         public void Class1Method()
         {
             _tracer.StartTrace();
-           // Thread thread3 = new Thread(new ThreadStart(_class3.Class3Method));
-          //  thread3.Start();
             _class2.Class2Method();
             _class3.Class3Method();
             _tracer.StopTrace();
@@ -43,6 +41,9 @@ namespace MainClass
         public void Class2Method()
         {
             _tracer.StartTrace();
+            Thread thread = new Thread(_class3.Class3Method);
+            thread.Start();
+            thread.Join();
             _class3.Class3Method();
             _tracer.StopTrace();
         }

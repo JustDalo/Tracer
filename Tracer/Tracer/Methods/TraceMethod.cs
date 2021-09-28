@@ -27,7 +27,6 @@ namespace Tracer.Tracer.Methods
 
         public void StopMethodTrace(MethodInfo methodInfo)
         {
-            var finishedTime = DateTime.Now - MethodInfo.MethodStartTime;
             methodInfo.ElapsedTime = DateTime.Now - MethodInfo.MethodStartTime;
         }
     }
