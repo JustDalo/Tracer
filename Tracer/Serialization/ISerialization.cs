@@ -4,6 +4,6 @@ namespace Tracer.Serialization
 {
     public interface ISerialization
     {
-        public void SerializeTraceResult(TraceResult threadList);
+        public string SerializeTraceResult(TraceResult threadList);
     }
 }

@@ -18,18 +18,10 @@ namespace Tracer.Serialization
             
         }
         
-        public void SerializeTraceResult(TraceResult threadList)
+        public string SerializeTraceResult(TraceResult threadList)
         {
             string json = JsonConvert.SerializeObject(threadList, Formatting.Indented);
-
-            Console.WriteLine(json);
-            File.WriteAllText(@"d:\TraceResult.json", JsonConvert.SerializeObject(threadList, Formatting.Indented));
-            
-            using (StreamWriter file = File.CreateText(@"d:\TraceResult.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, JsonConvert.SerializeObject(threadList, Formatting.Indented));
-            }
+            return json;
         }
     }
 }

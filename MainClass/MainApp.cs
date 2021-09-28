@@ -21,10 +21,14 @@ namespace MainClass
             class2Thread.Join();
             class3Thread.Join();
             class1.Class1Method();
-          
+            
             TraceResult traceResult = tracer.GetTraceResult();
+            var xml = new XmlSerialization();
             var json = new JsonSerialization();
-            json.SerializeTraceResult(traceResult);
+            
+            var writer = new ResultWriter();
+            writer.WriteResult(json.SerializeTraceResult(traceResult), @"d:\TraceResult.json");
+            writer.WriteResult(xml.SerializeTraceResult(traceResult), @"d:\TraceResult.xml");
         }
     }
 }

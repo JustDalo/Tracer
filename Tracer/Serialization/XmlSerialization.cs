@@ -1,22 +1,31 @@
 using System;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 using Tracer.Tracer;
-using Tracer.Tracer.Methods;
-using Tracer.Tracer.Threads;
 
 namespace Tracer.Serialization
 {
     public class XmlSerialization : ISerialization
     {
-        public void SerializeTraceResult(TraceResult threadList)
+        public string SerializeTraceResult(TraceResult threadList)
         {
             XmlSerializer formatter = new XmlSerializer(typeof(TraceResult));
-            using (FileStream fs = new FileStream(@"d:\TraceResult.xml", FileMode.OpenOrCreate))
+            string xml = "";
+            using (var sww = new StringWriter())
             {
-                formatter.Serialize(fs, threadList);
-                Console.WriteLine("Объект сериализован");
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.OmitXmlDeclaration = true;
+                using (XmlWriter writer = XmlWriter.Create(sww, settings))
+                {
+                    formatter.Serialize(writer, threadList);
+                    xml = sww.ToString();
+                    
+                }
             }
+
+            return xml;
         }
     }
 }
